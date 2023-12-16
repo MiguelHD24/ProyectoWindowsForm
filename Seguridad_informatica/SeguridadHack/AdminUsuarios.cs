@@ -21,6 +21,12 @@ namespace SeguridadHack
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
         }
+        private void ValidarSesion()
+        {
+            Usuario user = new Usuario();
+            user.Id_Usuario = ID_Usuario;
+            ID_Rol = BL_Usuario.ObtenerIDRol(user.Id_Usuario);
+        }
         private void cargargrid()
         {
             try
@@ -36,47 +42,88 @@ namespace SeguridadHack
                 MessageBox.Show(ex.Message);
             }
         }
-        private void ValidarUpdate()
+        private bool ValidarUpdate()
         {
-            if (string.IsNullOrEmpty(txtNombre.Text))
+            if (ValidarCampos())
+            {
+                Usuario usuario = new Usuario();
+                usuario.Id_Usuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Id_Usuario"].Value.ToString());
+                usuario.Nombre = txtNombre.Text;
+                usuario.Correo = txtCorreo.Text;
+                usuario.Login = txtUsuario.Text;
+                usuario.Password = BL_Usuario.Sha256(txtPassword.Text);
+                usuario.CambiarPassword = true;
+                usuario.UsuarioActualiza = ID_Usuario;
+                usuario.IdRol = Convert.ToInt32(DDLRol.SelectedValue);
+                BL_Usuario.Update(usuario);
+                MessageBox.Show("Usuario Actualizado correctamente");
+                cargargrid();
+                LimpiarControles();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool ValidarCampos()
+        {
+            if (txtNombre.Text == "NOMBRE")
             {
                 MessageBox.Show("Ingresar Nombre");
-                return;
+                return false;
             }
-            if (string.IsNullOrEmpty(txtCorreo.Text))
+            if (txtCorreo.Text == "CORREO")
             {
                 MessageBox.Show("Ingresar Correo");
-                return;
+                return false;
             }
-            if (string.IsNullOrEmpty(txtUsuario.Text))
+            if (txtUsuario.Text == "USUARIO")
             {
                 MessageBox.Show("Ingresar Nombre de Usuario");
-                return;
+                return false;
             }
-            if (string.IsNullOrEmpty(txtPassword.Text))
+            if (txtPassword.Text == "CONTRASEÑA")
             {
                 MessageBox.Show("Ingresar Contraseña");
-                return;
-            } 
+                return false;
+            }
+
+            if (txtPassword.Text.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres");
+                return false;
+            }
+            if (!txtPassword.Text.Any(char.IsUpper))
+            {
+                MessageBox.Show("La contraseña debe tener al menos una mayuscula");
+                return false;
+            }
+            if (!txtPassword.Text.Any(char.IsLower))
+            {
+                MessageBox.Show("La contraseña debe tener al menos una minuscula");
+                return false;
+            }
+            if (!txtPassword.Text.Any(char.IsDigit))
+            {
+                MessageBox.Show("La contraseña debe tener al menos un numero");
+                return false;
+            }
+            if (!txtPassword.Text.Any(ch => !Char.IsLetterOrDigit(ch)))
+            {
+                MessageBox.Show("La contraseña debe tener al menos un caracter especial");
+                return false;
+            }
             if (DDLRol.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccionar Rol");
-                return;
+                return false;
             }
+
+            return true;
             
-            Usuario usuario = new Usuario();
-            usuario.Id_Usuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Id_Usuario"].Value.ToString());
-            usuario.Nombre = txtNombre.Text;
-            usuario.Correo = txtCorreo.Text;
-            usuario.Login = txtUsuario.Text;
-            usuario.Password = BL_Usuario.Sha256(txtPassword.Text);
-            usuario.CambiarPassword = true;
-            usuario.UsuarioActualiza = ID_Usuario;
-            usuario.IdRol = Convert.ToInt32(DDLRol.SelectedValue);        
-            BL_Usuario.Update(usuario);
-            MessageBox.Show("Usuario Actualizado correctamente");
-            cargargrid();
-            LimpiarControles();
+            
+            
         }
         private void ActualizarROL()
         { 
@@ -95,13 +142,37 @@ namespace SeguridadHack
             txtCorreo.Text = string.Empty;
             txtUsuario.Text = string.Empty;
             txtPassword.Text = string.Empty;
-            
+
             DDLRol.SelectedIndex = -1;
+        }
+        private void ValidarPermisos()
+        {
+            
+            if (ID_Rol == 1)
+            {
+                btnEditar.Visible = true;
+                btnEliminar.Visible = true;
+                BtnRol.Visible = true;
+
+
+            }
+            else if (ID_Rol == 2)
+            {
+                btnEditar.Visible = false;
+                btnEliminar.Visible = false;
+                BtnRol.Visible = false;
+
+                
+            }
         }
         private void AdminUsuarios_Load(object sender, EventArgs e)
         {
             cargargrid();
             cargarCombobox();
+            ValidarSesion();
+            ValidarPermisos();
+            txtPassword.UseSystemPasswordChar = true;
+            DDLRol.SelectedIndex = -1;
         }
         private void cargarCombobox()
         {
@@ -118,6 +189,8 @@ namespace SeguridadHack
         private void btnEditar_Click(object sender, EventArgs e)
         {
             ValidarUpdate();
+            ValidarPermisos();
+            DDLRol.SelectedIndex = -1;
         }
         
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,6 +240,7 @@ namespace SeguridadHack
         private void BtnRol_Click(object sender, EventArgs e)
         {
             ActualizarROL();
+            ValidarPermisos();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

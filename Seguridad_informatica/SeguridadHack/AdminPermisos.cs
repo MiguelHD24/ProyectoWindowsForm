@@ -35,6 +35,19 @@ namespace SeguridadHack
                 MessageBox.Show(ex.Message);
             }
         }
+        private void CargarGridPermiso()
+        {
+            try
+            {
+                DGVPermisosNew.DataSource = BL_Permisos.Lista();
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
 
         private void CargarComboboxROL()
@@ -64,13 +77,21 @@ namespace SeguridadHack
         {
 
         }
-
+        private void ValidarSesion()
+        {
+            Usuario user = new Usuario();
+            user.Id_Usuario = ID_Usuario;
+            ID_Rol = BL_Usuario.ObtenerIDRol(user.Id_Usuario);
+        }
+        
         private void AdminPermisos_Load(object sender, EventArgs e)
         {
             
             CargarGrid();
+            CargarGridPermiso();
             CargarComboboxPermiso();
             CargarComboboxROL();
+            ValidarSesion();
 
         }
 
@@ -123,6 +144,65 @@ namespace SeguridadHack
             menuPrincipal.Show();
             this.Hide();
 
+        }
+        private void insertarPermiso()
+        {
+            if(txtNuevoPermiso.Text != "")
+            {
+                Permisos permisos = new Permisos();
+                permisos.Permiso = txtNuevoPermiso.Text;
+                permisos.UsuarioRegistro = ID_Usuario;
+                if (BL_Permisos.Insert(permisos) != null)
+                {
+                    MessageBox.Show("Se inserto el permiso");
+                    CargarGridPermiso();
+                    CargarComboboxPermiso();
+                    txtNuevoPermiso.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo insertar el permiso");
+                    CargarGridPermiso();
+                    CargarComboboxPermiso();
+                    txtNuevoPermiso.Text = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ingrese nuevo permiso");
+                CargarGridPermiso();
+                CargarComboboxPermiso();
+                txtNuevoPermiso.Text = "";
+            }
+        }
+
+        private void AnularPermiso()
+        {
+            Permisos permisos = new Permisos();
+            permisos.UsuarioActualiza = ID_Usuario;
+            permisos.IdPermiso = Convert.ToInt32(dgvRolPermiso.CurrentRow.Cells["IdPermiso"].Value.ToString());
+            if (BL_Permisos.Anular(permisos))
+            {
+                MessageBox.Show("Se anulo el permiso");
+                CargarGridPermiso();
+                CargarComboboxPermiso();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo anular el permiso");
+                CargarGridPermiso();
+                CargarComboboxPermiso();
+            }
+        }
+
+        private void BtnPermisoInsert_Click(object sender, EventArgs e)
+        {
+            insertarPermiso();
+        }
+
+        private void BtnPermisoAnular_Click(object sender, EventArgs e)
+        {
+            AnularPermiso();
         }
     }
 }

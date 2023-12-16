@@ -16,6 +16,7 @@ namespace SeguridadHack
     {
         public int ID_Usuario { get; set; }
         public int ID_Rol { get; set; }
+        private int Enum;
         public Registro()
         {
             InitializeComponent();
@@ -32,29 +33,54 @@ namespace SeguridadHack
         }
         private bool ValidarInsertar()
         {
-            if (string.IsNullOrEmpty(txtNombre.Text))
+            if (txtNombre.Text == "NOMBRE")
             {
                 MessageBox.Show("Ingresar Nombre");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtCorreo.Text))
+            if (txtCorreo.Text == "CORREO")
             {
                 MessageBox.Show("Ingresar Correo");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtUsuario.Text))
+            if (txtUsuario.Text == "USUARIO")
             {
                 MessageBox.Show("Ingresar Nombre de Usuario");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtPassword.Text))
+            if (txtPassword.Text == "CONTRASEÑA")
             {
                 MessageBox.Show("Ingresar Contraseña");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtConfirmar.Text))
+            if (txtConfirmar.Text == "CONFIRMAR CONTRASEÑA")
             {
                 MessageBox.Show("Confirmar Contraseña");
+                return false;
+            }
+            if (txtPassword.Text.Length < 8)
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres");
+                return false;
+            }
+            if (!txtPassword.Text.Any(char.IsUpper))
+            {
+                MessageBox.Show("La contraseña debe tener al menos una mayuscula");
+                return false;
+            }
+            if (!txtPassword.Text.Any(char.IsLower))
+            {
+                MessageBox.Show("La contraseña debe tener al menos una minuscula");
+                return false;
+            }
+            if (!txtPassword.Text.Any(char.IsDigit))
+            {
+                MessageBox.Show("La contraseña debe tener al menos un numero");
+                return false;
+            }
+            if (!txtPassword.Text.Any(ch => !Char.IsLetterOrDigit(ch)))
+            {
+                MessageBox.Show("La contraseña debe tener al menos un caracter especial");
                 return false;
             }
             if (!(txtPassword.Text == txtConfirmar.Text))
@@ -62,6 +88,7 @@ namespace SeguridadHack
                 MessageBox.Show("La contraseña no coincide");
                 return false;
             }
+
             return true;
         }
         private void Guardar()
@@ -72,8 +99,8 @@ namespace SeguridadHack
                 if (ValidarInsertar())
                 {
                     if (ID_Rol < 1)
-                    { 
-                        ID_Rol = 2; 
+                    {
+                        ID_Rol = 2;
                     }
                     User.Nombre = txtNombre.Text;
                     User.Correo = txtCorreo.Text;
@@ -87,11 +114,19 @@ namespace SeguridadHack
                     if (BL_Usuario.Insert(User).Id_Usuario > 0)
                     {
                         MessageBox.Show("Se agrego correctamente");
+                        Enum = 2;
                         return;
                     }
                     MessageBox.Show("No se agrego correctamente");
+                    Enum = 2;
                     return;
                 }
+                else
+                {
+                    Enum = 1;
+                    return;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -103,20 +138,73 @@ namespace SeguridadHack
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
             Guardar();
-            if (ID_Rol ==2)
-            {
-                FormLogin formLogin = new FormLogin();
-                formLogin.Show();
-                this.Hide();
-            }
-            else
-            {
-                Menu_Principal frmMenu = new Menu_Principal();
-                frmMenu.ID_Usuario = ID_Usuario;
-                frmMenu.ID_Rol = ID_Rol;
-                frmMenu.Show();
-                this.Hide();
-            }
+            
+            
+                if (Enum == 1)
+                {
+                    DialogResult result = MessageBox.Show("¿Deseas Regresar?", "Error", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (ID_Rol >= 1)
+                        {
+                            Menu_Principal frmMenu = new Menu_Principal();
+                            frmMenu.ID_Usuario = ID_Usuario;
+                            frmMenu.ID_Rol = ID_Rol;
+                            frmMenu.Show();
+                            this.Hide();
+                            return;
+                        }
+                        else if (ID_Rol == 0)
+                        {
+                            FormLogin formLogin = new FormLogin();
+                            formLogin.Show();
+                            this.Hide();
+                        }
+                        
+
+
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        txtNombre.Focus();
+
+                        return;
+                    }
+                    return;
+                }
+                else if (Enum == 2)
+                {
+                    if (ID_Rol == 1)
+                    {
+                        Menu_Principal frmMenu = new Menu_Principal();
+                        frmMenu.ID_Usuario = ID_Usuario;
+                        frmMenu.ID_Rol = ID_Rol;
+                        frmMenu.Show();
+                        this.Hide();
+                        return;
+                    }
+                    else if (ID_Rol == 2)
+                    {
+                        FormLogin formLogin = new FormLogin();
+                        formLogin.Show();
+                        this.Hide();
+                    }
+                    else if (ID_Rol >= 3)
+                {
+                        Menu_Principal frmMenu = new Menu_Principal();
+                        frmMenu.ID_Usuario = ID_Usuario;
+                        frmMenu.ID_Rol = ID_Rol;
+                        frmMenu.Show();
+                        this.Hide();
+                        return;
+                    }
+
+                    
+                
+                }
+                
+                
+            
             
         }
 

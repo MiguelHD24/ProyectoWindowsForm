@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using EL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +22,12 @@ namespace SeguridadHack
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
         }
+        private void ValidarSesion()
+        {
+            Usuario user = new Usuario();
+            user.Id_Usuario = ID_Usuario;
+            ID_Rol = BL_Usuario.ObtenerIDRol(user.Id_Usuario);
+        }
         private void ActualizarBoton()
         {
             if (Enum == 1)
@@ -38,6 +46,7 @@ namespace SeguridadHack
         private void Ventas_Load(object sender, EventArgs e)
         {
             ActualizarBoton();
+            ValidarSesion();
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
