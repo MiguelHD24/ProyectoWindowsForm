@@ -137,6 +137,26 @@ namespace DAL
                 }).ToList();
             }
         }
+		
+		public static bool ActualizarRol (int Id_Usuario, int Id_Rol, int UsuarioActualiza)
+		{
+            using (BDSistemLock bd = new BDSistemLock ())
+			{
+                var usuarioEncontrado = bd.Usuario.Where(a=> a.Id_Usuario == Id_Usuario).FirstOrDefault();
+
+                if (usuarioEncontrado != null)
+				{
+                    usuarioEncontrado.IdRol = Id_Rol;
+					usuarioEncontrado.UsuarioActualiza = UsuarioActualiza;
+                    bd.SaveChanges();
+                    return true;
+                }
+                else
+				{
+                    return false; // Valor que indica que las credenciales no son válidas
+                }
+            }
+        }
 
 		
 	}

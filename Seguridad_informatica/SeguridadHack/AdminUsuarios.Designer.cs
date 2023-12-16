@@ -46,6 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnRol = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +54,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.panel1.Controls.Add(this.BtnRol);
             this.panel1.Controls.Add(this.btnVolver);
             this.panel1.Controls.Add(this.btnEliminar);
             this.panel1.Controls.Add(this.btnEditar);
@@ -73,7 +75,7 @@
             this.panel1.Location = new System.Drawing.Point(11, 10);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1363, 479);
+            this.panel1.Size = new System.Drawing.Size(1363, 508);
             this.panel1.TabIndex = 0;
             // 
             // btnVolver
@@ -85,13 +87,14 @@
             this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVolver.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.ForeColor = System.Drawing.Color.LightGray;
-            this.btnVolver.Location = new System.Drawing.Point(41, 425);
+            this.btnVolver.Location = new System.Drawing.Point(40, 467);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(422, 30);
             this.btnVolver.TabIndex = 15;
             this.btnVolver.Text = "VOLVER";
             this.btnVolver.UseVisualStyleBackColor = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // btnEliminar
             // 
@@ -253,7 +256,7 @@
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersWidth = 62;
             this.dgvUsuarios.RowTemplate.Height = 28;
-            this.dgvUsuarios.Size = new System.Drawing.Size(859, 430);
+            this.dgvUsuarios.Size = new System.Drawing.Size(859, 459);
             this.dgvUsuarios.TabIndex = 1;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             this.dgvUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_DoubleClick);
@@ -287,12 +290,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
+            // BtnRol
+            // 
+            this.BtnRol.BackColor = System.Drawing.Color.DimGray;
+            this.BtnRol.FlatAppearance.BorderSize = 0;
+            this.BtnRol.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BtnRol.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnRol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRol.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRol.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnRol.Location = new System.Drawing.Point(40, 423);
+            this.BtnRol.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnRol.Name = "BtnRol";
+            this.BtnRol.Size = new System.Drawing.Size(422, 30);
+            this.BtnRol.TabIndex = 16;
+            this.BtnRol.Text = "ASIGNAR ROL";
+            this.BtnRol.UseVisualStyleBackColor = false;
+            this.BtnRol.Click += new System.EventHandler(this.BtnRol_Click);
+            // 
             // AdminUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(182)))));
-            this.ClientSize = new System.Drawing.Size(1386, 498);
+            this.ClientSize = new System.Drawing.Size(1386, 529);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -326,6 +347,7 @@
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button BtnRol;
     }
 }
 

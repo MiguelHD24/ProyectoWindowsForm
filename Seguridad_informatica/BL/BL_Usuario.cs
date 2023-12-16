@@ -54,5 +54,9 @@ namespace BL
 		{
 			return DAL_Usuario.ListaUsuario();
 		}
+        public static bool ActualizarRol(int Id_Usuario, int Id_Rol, int UsuarioActualiza)
+		{
+			return DAL_Usuario.ActualizarRol(Id_Usuario, Id_Rol,UsuarioActualiza);
+		}
     }
 }

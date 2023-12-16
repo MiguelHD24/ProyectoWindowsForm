@@ -32,21 +32,27 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnLogout = new System.Windows.Forms.Button();
             this.Label2 = new System.Windows.Forms.Label();
-            this.btnMinimizar = new System.Windows.Forms.PictureBox();
-            this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.BtnRegistro = new System.Windows.Forms.Button();
             this.BtnAdminPermiso = new System.Windows.Forms.Button();
             this.BtnAdminUser = new System.Windows.Forms.Button();
+            this.BtnVentas = new System.Windows.Forms.Button();
+            this.BtnAlmacen = new System.Windows.Forms.Button();
+            this.BtnProductos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMinimizar = new System.Windows.Forms.PictureBox();
+            this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.panel1.Controls.Add(this.BtnProductos);
+            this.panel1.Controls.Add(this.BtnAlmacen);
+            this.panel1.Controls.Add(this.BtnVentas);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.BtnLogout);
             this.panel1.Controls.Add(this.Label2);
@@ -70,10 +76,10 @@
             this.BtnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLogout.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLogout.ForeColor = System.Drawing.Color.LightGray;
-            this.BtnLogout.Location = new System.Drawing.Point(916, 17);
+            this.BtnLogout.Location = new System.Drawing.Point(857, 17);
             this.BtnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.BtnLogout.Name = "BtnLogout";
-            this.BtnLogout.Size = new System.Drawing.Size(153, 57);
+            this.BtnLogout.Size = new System.Drawing.Size(212, 57);
             this.BtnLogout.TabIndex = 33;
             this.BtnLogout.Text = "Cerrar Sesion";
             this.BtnLogout.UseVisualStyleBackColor = false;
@@ -90,32 +96,6 @@
             this.Label2.Size = new System.Drawing.Size(211, 30);
             this.Label2.TabIndex = 32;
             this.Label2.Text = "MENU PRINCIPAL";
-            // 
-            // btnMinimizar
-            // 
-            this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
-            this.btnMinimizar.Location = new System.Drawing.Point(1131, 4);
-            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(16, 16);
-            this.btnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.btnMinimizar.TabIndex = 31;
-            this.btnMinimizar.TabStop = false;
-            this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.Location = new System.Drawing.Point(1173, 4);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(16, 16);
-            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.btnCerrar.TabIndex = 30;
-            this.btnCerrar.TabStop = false;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // BtnRegistro
             // 
@@ -174,6 +154,63 @@
             this.BtnAdminUser.UseVisualStyleBackColor = false;
             this.BtnAdminUser.Click += new System.EventHandler(this.BtnAdminUser_Click);
             // 
+            // BtnVentas
+            // 
+            this.BtnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnVentas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVentas.FlatAppearance.BorderSize = 0;
+            this.BtnVentas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BtnVentas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVentas.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVentas.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnVentas.Location = new System.Drawing.Point(112, 393);
+            this.BtnVentas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnVentas.Name = "BtnVentas";
+            this.BtnVentas.Size = new System.Drawing.Size(265, 168);
+            this.BtnVentas.TabIndex = 35;
+            this.BtnVentas.Text = "Ventas";
+            this.BtnVentas.UseVisualStyleBackColor = false;
+            this.BtnVentas.Click += new System.EventHandler(this.BtnVentas_Click);
+            // 
+            // BtnAlmacen
+            // 
+            this.BtnAlmacen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnAlmacen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAlmacen.FlatAppearance.BorderSize = 0;
+            this.BtnAlmacen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BtnAlmacen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnAlmacen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAlmacen.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAlmacen.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnAlmacen.Location = new System.Drawing.Point(490, 393);
+            this.BtnAlmacen.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnAlmacen.Name = "BtnAlmacen";
+            this.BtnAlmacen.Size = new System.Drawing.Size(265, 168);
+            this.BtnAlmacen.TabIndex = 36;
+            this.BtnAlmacen.Text = "Ingreso a Almacen";
+            this.BtnAlmacen.UseVisualStyleBackColor = false;
+            this.BtnAlmacen.Click += new System.EventHandler(this.BtnAlmacen_Click);
+            // 
+            // BtnProductos
+            // 
+            this.BtnProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.BtnProductos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnProductos.FlatAppearance.BorderSize = 0;
+            this.BtnProductos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.BtnProductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnProductos.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProductos.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnProductos.Location = new System.Drawing.Point(834, 403);
+            this.BtnProductos.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnProductos.Name = "BtnProductos";
+            this.BtnProductos.Size = new System.Drawing.Size(265, 168);
+            this.BtnProductos.TabIndex = 37;
+            this.BtnProductos.Text = "Administracion de Productos";
+            this.BtnProductos.UseVisualStyleBackColor = false;
+            this.BtnProductos.Click += new System.EventHandler(this.BtnProductos_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SeguridadHack.Properties.Resources.imag;
@@ -183,6 +220,32 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
+            // 
+            // btnMinimizar
+            // 
+            this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
+            this.btnMinimizar.Location = new System.Drawing.Point(1131, 4);
+            this.btnMinimizar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMinimizar.Name = "btnMinimizar";
+            this.btnMinimizar.Size = new System.Drawing.Size(16, 16);
+            this.btnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnMinimizar.TabIndex = 31;
+            this.btnMinimizar.TabStop = false;
+            this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
+            this.btnCerrar.Location = new System.Drawing.Point(1173, 4);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(16, 16);
+            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnCerrar.TabIndex = 30;
+            this.btnCerrar.TabStop = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // Menu_Principal
             // 
@@ -198,9 +261,9 @@
             this.Load += new System.EventHandler(this.Menu_Principal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,5 +279,8 @@
         internal System.Windows.Forms.Button BtnLogout;
         internal System.Windows.Forms.Label Label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        internal System.Windows.Forms.Button BtnProductos;
+        internal System.Windows.Forms.Button BtnAlmacen;
+        internal System.Windows.Forms.Button BtnVentas;
     }
 }

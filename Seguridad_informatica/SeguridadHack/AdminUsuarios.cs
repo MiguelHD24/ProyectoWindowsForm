@@ -78,6 +78,17 @@ namespace SeguridadHack
             cargargrid();
             LimpiarControles();
         }
+        private void ActualizarROL()
+        { 
+            Usuario usuario = new Usuario();
+            usuario.Id_Usuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Id_Usuario"].Value.ToString());
+            usuario.IdRol = Convert.ToInt32(DDLRol.SelectedValue);
+            usuario.UsuarioActualiza = ID_Usuario;
+            BL_Usuario.ActualizarRol(usuario.Id_Usuario, usuario.IdRol,ID_Usuario);
+            MessageBox.Show("Rol Actualizado correctamente");
+            cargargrid();
+            LimpiarControles();
+        }
         private void LimpiarControles()
         {
             txtNombre.Text = string.Empty;
@@ -151,6 +162,20 @@ namespace SeguridadHack
                 LimpiarControles();
                 
             }
+        }
+
+        private void BtnRol_Click(object sender, EventArgs e)
+        {
+            ActualizarROL();
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Menu_Principal frmMenu = new Menu_Principal();
+            frmMenu.ID_Usuario = ID_Usuario;
+            frmMenu.ID_Rol = ID_Rol;
+            frmMenu.Show();
+            this.Hide();
         }
     }
 }

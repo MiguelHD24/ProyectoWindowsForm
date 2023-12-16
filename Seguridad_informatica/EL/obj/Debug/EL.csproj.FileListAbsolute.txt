@@ -10,3 +10,15 @@ C:\Proyectos\Seguridad_informatica\EL\obj\Debug\EL.csproj.CoreCompileInputs.cach
 C:\Proyectos\Seguridad_informatica\EL\obj\Debug\EL.csproj.CopyComplete
 C:\Proyectos\Seguridad_informatica\EL\obj\Debug\EL.dll
 C:\Proyectos\Seguridad_informatica\EL\obj\Debug\EL.pdb
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EL.dll.config
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EL.dll
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EL.pdb
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EntityFramework.dll
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EntityFramework.xml
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\obj\Debug\EL.csproj.AssemblyReference.cache
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\obj\Debug\EL.csproj.CoreCompileInputs.cache
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\obj\Debug\EL.csproj.CopyComplete
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\obj\Debug\EL.dll
+C:\Users\m_ang\OneDrive\Documentos\GitHub\ProyectoWindowsForm\Seguridad_informatica\EL\obj\Debug\EL.pdb
