@@ -30,12 +30,10 @@ namespace DAL
 				 Registro.Correo = Entidad.Correo;
 				 Registro.Login = Entidad.Login;
 				 Registro.Password = Entidad.Password;
-				 Registro.IdRol = Entidad.IdRol;
-				 Registro.Contador = Entidad.Contador;
-				 Registro.Bloqueado = Entidad.Bloqueado;
+				 Registro.IdRol = Entidad.IdRol;		 
 				 Registro.CambiarPassword = Entidad.CambiarPassword;
 				 Registro.UsuarioActualiza = Entidad.UsuarioActualiza;
-				 Registro.FechaActualizacion = Entidad.FechaActualizacion;
+				 Registro.FechaActualizacion = DateTime.Now;
 				 return bd.SaveChanges() > 0;
 			}
 		}
@@ -44,7 +42,7 @@ namespace DAL
 			 using (BDSistemLock bd = new BDSistemLock ())
 			{
 				 var Registro = bd.Usuario.Find(Entidad.Id_Usuario);
-				 Registro.Activo = Entidad.Activo;
+				 Registro.Activo = false;
 				 Registro.UsuarioActualiza = Entidad.UsuarioActualiza;
 				 Registro.FechaActualizacion = Entidad.FechaActualizacion;
 				 return bd.SaveChanges() > 0;

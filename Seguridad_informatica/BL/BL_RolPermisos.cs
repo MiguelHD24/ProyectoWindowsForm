@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using EL;
 using DAL;
+using static DAL.DAL_RolPermisos;
+
 namespace BL
 {
 	 public static class BL_RolPermisos
@@ -31,5 +33,10 @@ namespace BL
 		{
 			 return DAL_RolPermisos.Lista(Activo);
 		}
-	}
+		public static List<RolPermisoViewModel> MostrarRolPermiso()
+		{ 
+			return DAL_RolPermisos.MostrarRolPermiso();
+		}
+
+    }
 }

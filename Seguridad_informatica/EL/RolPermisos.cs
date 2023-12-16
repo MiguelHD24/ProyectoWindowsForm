@@ -18,4 +18,10 @@ namespace EL
 		public int? UsuarioActualiza { get; set; }
 		public DateTime? FechaActualizacion { get; set; }
 	 }
+    public class RolPermisoViewModel
+    {
+        public int IdRolPermiso { get; set; }
+        public string Rol { get; set; }
+        public string Permiso { get; set; }
+    }
 }

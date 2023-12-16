@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPermisos.Designer.cs">
+      <DependentUpon>AdminPermisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminPermisos.resx">
+      <DependentUpon>AdminPermisos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminUsuarios.resx">
       <DependentUpon>AdminUsuarios.cs</DependentUpon>
     </EmbeddedResource>

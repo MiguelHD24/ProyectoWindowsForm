@@ -7,7 +7,8 @@ namespace DAL
 {
 	 public static class DAL_RolPermisos
 	{
-		 public static RolPermisos Insert (RolPermisos Entidad)
+       
+        public static RolPermisos Insert (RolPermisos Entidad)
 		{
 			 using (BDSistemLock bd = new BDSistemLock ())
 			{
@@ -35,9 +36,9 @@ namespace DAL
 			 using (BDSistemLock bd = new BDSistemLock ())
 			{
 				 var Registro = bd.RolPermisos.Find(Entidad.IdRolPermiso);
-				 Registro.Activo = Entidad.Activo;
+				 Registro.Activo = false;
 				 Registro.UsuarioActualiza = Entidad.UsuarioActualiza;
-				 Registro.FechaActualizacion = Entidad.FechaActualizacion;
+				 Registro.FechaActualizacion = DateTime.Now;
 				 return bd.SaveChanges() > 0;
 			}
 		}
@@ -62,5 +63,26 @@ namespace DAL
 				 return bd.RolPermisos.Where(a=>a.Activo == Activo).ToList();
 			}
 		}
-	}
+        
+        
+
+        public static List<RolPermisoViewModel> MostrarRolPermiso()
+        {
+            using (BDSistemLock bd = new BDSistemLock())
+            {
+                var query = from rp in bd.RolPermisos
+                            join r in bd.Roles on rp.IdRol equals r.IdRol
+                            join p in bd.Permisos on rp.IdPermiso equals p.IdPermiso
+							where rp.Activo == true
+                            select new RolPermisoViewModel
+                            {
+                                IdRolPermiso = rp.IdRolPermiso,
+                                Rol = r.Rol,
+                                Permiso = p.Permiso
+                            };
+
+                return query.ToList();
+            }
+        }
+    }
 }

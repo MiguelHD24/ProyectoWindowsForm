@@ -36,6 +36,57 @@ namespace SeguridadHack
                 MessageBox.Show(ex.Message);
             }
         }
+        private void ValidarUpdate()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("Ingresar Nombre");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtCorreo.Text))
+            {
+                MessageBox.Show("Ingresar Correo");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                MessageBox.Show("Ingresar Nombre de Usuario");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Ingresar Contraseña");
+                return;
+            } 
+            if (DDLRol.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccionar Rol");
+                return;
+            }
+            
+            Usuario usuario = new Usuario();
+            usuario.Id_Usuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Id_Usuario"].Value.ToString());
+            usuario.Nombre = txtNombre.Text;
+            usuario.Correo = txtCorreo.Text;
+            usuario.Login = txtUsuario.Text;
+            usuario.Password = BL_Usuario.Sha256(txtPassword.Text);
+            usuario.CambiarPassword = true;
+            usuario.UsuarioActualiza = ID_Usuario;
+            usuario.IdRol = Convert.ToInt32(DDLRol.SelectedValue);        
+            BL_Usuario.Update(usuario);
+            MessageBox.Show("Usuario Actualizado correctamente");
+            cargargrid();
+            LimpiarControles();
+        }
+        private void LimpiarControles()
+        {
+            txtNombre.Text = string.Empty;
+            txtCorreo.Text = string.Empty;
+            txtUsuario.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            
+            DDLRol.SelectedIndex = -1;
+        }
         private void AdminUsuarios_Load(object sender, EventArgs e)
         {
             cargargrid();
@@ -51,56 +102,55 @@ namespace SeguridadHack
 
         }
 
-        private void dgvUsuarios_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-
-            if (dgvUsuarios.SelectedRows.Count > 0)
-            {
-
-                txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Nombre"].Value.ToString();
-                txtCorreo.Text = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
-                txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Login"].Value.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una fila por favor");
-            }
-
-        }
+        
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count > 0)
-            {
+            ValidarUpdate();
+        }
+        
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            
+        }
 
-                txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Nombre"].Value.ToString();
-                txtCorreo.Text = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
-                txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Login"].Value.ToString();
+        private void dgvUsuarios_DoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var IdEncontrado = dgvUsuarios.CurrentRow.Cells["Id_Usuario"].Value.ToString();
+            this.txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Nombre"].Value.ToString();
+            this.txtCorreo.Text = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
+            this.txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Login"].Value.ToString();
+            Roles roles = new Roles();
+            roles.IdRol = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["IdRol"].Value.ToString());
+            if (BL_Roles.ObtenerRol(roles.IdRol) != null)
+            {
+                this.DDLRol.Text = BL_Roles.ObtenerRol(roles.IdRol);
             }
             else
             {
-                MessageBox.Show("Seleccione una fila por favor");
+                this.DDLRol.Text = "En Revision";
             }
         }
 
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuarios.SelectedRows.Count > 0)
+            Usuario usuario = new Usuario();
+            usuario.Id_Usuario = Convert.ToInt32(dgvUsuarios.CurrentRow.Cells["Id_Usuario"].Value.ToString());
+            usuario.UsuarioActualiza = ID_Usuario;
+            if (!(BL_Usuario.Anular(usuario)))
             {
-
-                txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Nombre"].Value.ToString();
-                txtCorreo.Text = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
-                txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Login"].Value.ToString();
+                MessageBox.Show("No se pudo eliminar el usuario");
+                cargargrid();
+                LimpiarControles();
             }
             else
             {
-                MessageBox.Show("Seleccione una fila por favor");
+                MessageBox.Show("Usuario Eliminado correctamente");
+                cargargrid();
+                LimpiarControles();
+                
             }
-            //txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Nombre"].Value.ToString();
-            //txtCorreo.Text = dgvUsuarios.CurrentRow.Cells["Correo"].Value.ToString();
-            //txtUsuario.Text = dgvUsuarios.CurrentRow.Cells["Login"].Value.ToString();
-            //DDLRol.ValueMember = dgvUsuarios.CurrentRow.Cells["IdRol"].Value.ToString();
         }
     }
 }

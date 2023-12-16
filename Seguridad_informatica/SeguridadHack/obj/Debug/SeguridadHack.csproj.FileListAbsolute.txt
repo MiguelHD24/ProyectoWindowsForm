@@ -37,3 +37,4 @@ C:\Proyectos\Seguridad_informatica\SeguridadHack\bin\Debug\DAL.dll.config
 C:\Proyectos\Seguridad_informatica\SeguridadHack\obj\Debug\SeguridadHack.Registro.resources
 C:\Proyectos\Seguridad_informatica\SeguridadHack\obj\Debug\SeguridadHack.Menu_Principal.resources
 C:\Proyectos\Seguridad_informatica\SeguridadHack\obj\Debug\SeguridadHack.AdminUsuarios.resources
+C:\Proyectos\Seguridad_informatica\SeguridadHack\obj\Debug\SeguridadHack.AdminPermisos.resources

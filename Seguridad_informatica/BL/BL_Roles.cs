@@ -31,5 +31,10 @@ namespace BL
 		{
 			 return DAL_Roles.Lista(Activo);
 		}
-	}
+        public static string ObtenerRol(int IdRol)
+		{
+			return DAL_Roles.ObtenerRol(IdRol);
+		}
+
+    }
 }

@@ -61,5 +61,22 @@ namespace DAL
 				 return bd.Roles.Where(a=>a.Activo == Activo).ToList();
 			}
 		}
+		public static string ObtenerRol(int IdRol)
+		{
+            using (BDSistemLock bd = new BDSistemLock())
+			{
+                var rolEncontrado = bd.Roles
+                    .FirstOrDefault(a => a.IdRol == IdRol);
+
+                if (rolEncontrado != null)
+				{
+                    return rolEncontrado.Rol;
+                }
+                else
+				{
+                    return "En revision";
+                }
+            }
+        }
 	}
 }

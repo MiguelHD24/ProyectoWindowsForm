@@ -44,7 +44,11 @@ namespace SeguridadHack
 
         private void BtnAdminPermiso_Click(object sender, EventArgs e)
         {
-
+            AdminPermisos adminPermisos = new AdminPermisos();
+            adminPermisos.ID_Usuario = ID_Usuario;
+            adminPermisos.ID_Rol = ID_Rol;
+            adminPermisos.Show();
+            this.Hide();
         }
 
         private void BtnRegistro_Click(object sender, EventArgs e)
